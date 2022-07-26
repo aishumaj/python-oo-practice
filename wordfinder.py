@@ -3,8 +3,8 @@ from random import choice
 class WordFinder:
     """Word Finder: finds random words from a textfile.
 
-        >>> words = WordFinder(filepath = "/Users/aishu_maj/Desktop/words.txt")
-        10
+        >>> words = WordFinder(filepath = "/Users/andrewjensen/Desktop/words.txt")
+        12 words read
     """
     def __init__(self, filepath):
         """Creates instance that reads a filepath with a list of words and
@@ -21,7 +21,7 @@ class WordFinder:
         """Reads filepath, populating word list with words from the file"""
         file = open(self.filepath)
         for line in file:
-            self.words.append(line)
+            self.words.append(line.replace("\n", ""))
         return self.words
 
     def print_words_read(self):
@@ -30,13 +30,35 @@ class WordFinder:
 
     def random(self):
         """Returns a random word from word list"""
-        return choice(self.words).replace("\n", "")
+        return choice(self.words)
 
 
 
 class SpecialWordFinder(WordFinder):
     """Word Finder: finds random words from a textfile. Removes any commented out
-    lines and blank lines from file."""
+    lines and blank lines from file.
+    
+        >>> words2 = SpecialWordFinder(filepath = "/Users/andrewjensen/Desktop/words.txt")
+        9 words read
+
+        >>> words2.random() in words2.words
+        True
+
+        >>> words2.random() in words2.words
+        True
+        
+        >>> words2.random() in words2.words
+        True
+        
+        >>> words2.random() in words2.words
+        True
+        
+
+
+
+    
+    
+    """
 
     def __init__(self, filepath):
         super().__init__(filepath)
